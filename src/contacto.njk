@@ -1,0 +1,70 @@
+---
+title: Contáctanos
+description: Radiadores para todas las marcas y modelos de vehículo
+bodyClass: contacto
+layout: 'base.njk'
+---
+
+<section id="section__hero">
+  <div class="column__2 max1400">
+    <div class="col__left">
+      <h1>Venta de radiadores para vehículos</h1>
+      <h2>Encuentra el radiador <span>match</span> para tu vehículo.</h2>
+      <p>Tenemos un catálogo amplio para la mayoría de marcas de auto</p>
+      <a class="btn" href="#">Buscar el radiador para mi coche</a>
+    </div>
+    <div class="col__right">
+      <img src="/assets/images/hero_inicio.jpg" />
+    </div>
+  </div>
+</section>
+
+<section id="section__contact__data">
+  <div class="column__1 max1400">
+    <div id="data__contacto__wrapper">
+      <div class="data__contacto">
+        <img src="/assets/images/nosotros/proxy.svg" />
+        <a href="tel:+521{{contacto.telefono}}">{{ contacto.telefono }}</a>
+      </div>
+      <div class="data__contacto">
+        <img src="/assets/images/nosotros/proxy.svg" />
+        <a href="tel:+521{{contacto.telefono}}">{{ contacto.telefono }}</a>
+      </div>
+      <div class="data__contacto">
+        <img src="/assets/images/nosotros/proxy.svg" />
+        <a href="tel:+521{{contacto.telefono}}">{{ contacto.telefono }}</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="section__contacto">
+  <div class="column__2 max1400">
+    <div class="col__left">
+      <h2>A través del formulario:</h2>
+      <p>Llena todos los campos y nos pondremos en contacto contigo para brindarte información y soluciones.</p>
+      <form id="contact__form">
+        <label>Nombre:
+          <input type="text" id="name" name="name">
+        </label>
+        <label>Teléfono:
+          <input type="tel" id="tel" name="tel">
+        </label>
+        <label>Correo electrónico:
+          <input type="email" id="email" name="email">
+        </label>
+        <label>Comentarios:
+          <textarea id="message" name="message" rows="4" cols="50"></textarea>
+        </label>
+        <button class="btn">Enviar</button>
+      </form>
+    </div>
+    <div class="col__right">
+      <h2>Visítanos:</h2>
+      <div class="mapa__wrapper">
+        
+        <img class="proxy__mapa" src="/assets/images/proxy_mapa.png" />
+      </div>
+    </div>
+  </div>
+</section>

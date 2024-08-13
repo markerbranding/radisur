@@ -1,0 +1,1 @@
+{"errors":[{"message":"GraphQL Request must include at least one of those two parameters: \"query\" or \"queryId\"","extensions":{"category":"request"}}],"extensions":{"debug":[],"queryAnalyzer":{"keys":"","keysLength":0,"keysCount":0,"skippedKeys":"","skippedKeysSize":0,"skippedKeysCount":0,"skippedTypes":[]}}}

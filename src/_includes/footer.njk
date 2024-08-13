@@ -1,0 +1,35 @@
+<footer id="site__footer">
+  <div class="column__2 max1400">
+    <div class="col__left">
+      <ul role="list">
+        <li>
+          <h2>Oficinas</h2>
+          <p>{{ contacto.oficinas }}</p>
+        </li>
+        <li>
+          <a href="#"><span>Aviso de privacidad</span></a>
+        </li>
+      </ul>
+    </div>
+    <div class="col__right">
+      <ul class="foot__contacto" role="list">
+        <li>
+          <h2>Teléfono oficinas</h2>
+          <a href="tel:+521{{contacto.telefono}}">{{ contacto.telefono }}</a>
+        </li>
+        <li>
+          <h2>WhatsApp</h2>
+          <a href="https://wa.me/521{{contacto.whatsapp}}" target="_blank">{{ contacto.whatsapp }}</a>
+        </li>
+        <li>
+          <h2>Correo electrónico</h2>
+          <a href="mailto:{{contacto.correo}}"> {{ contacto.correo }} </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="column__1 max1400">
+    <span>© RADISUR | Radiadores para las principales marcas de automóvil | Sitio web creado por <a href="https://marker.com.mx" target="_blank">MARKER branding</a></span>
+  </div>
+  
+</footer>
