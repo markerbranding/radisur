@@ -193,7 +193,7 @@ nav ul li a{
 
 #section__hero{
     background-color: #cfdae1;
-    padding-top: 100px;
+    padding: 100px 5% 50px;
 }
 
 #section__hero .col__left{
@@ -638,6 +638,7 @@ button:disabled {
 
 #section__faq{
     margin-bottom: 10px;
+    padding: 0 5%;
 }
 
 .accordion{
@@ -721,6 +722,7 @@ button:disabled {
 
 #section__banners{
     margin-bottom: 40px;
+    padding: 0 5%;
 }
 
 #section__banners .col__left{
@@ -767,7 +769,7 @@ button:disabled {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-end;
     padding-right: 20px;
 }
 
@@ -1009,4 +1011,276 @@ footer .column__1 a {
     object-fit: cover;
     overflow: hidden;
     filter: grayscale();
+}
+
+@media screen and (max-width: 1024px) {
+    
+    h1{
+        font-size: 20px;
+        text-align: center;
+    }
+
+    h2{
+        font-size: 22px;
+    }
+
+    p{
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .btn{
+        font-size: 13px;
+    }
+    
+    #section__hero{
+        padding: 60px 20px 30px;
+    }
+
+    #logo__header img{
+        height: 50px;
+    }
+
+    #section__hero .column__2{
+        flex-direction: column-reverse;
+    }
+
+    #section__hero .column__2 .col__left{
+        width: 100%;
+        align-items: center;
+        padding-right: 0;
+    }
+
+    #section__hero .column__2 .col__right{
+        width: 100%;
+        padding-left: 0;
+    }
+
+    .coche__inicio img{
+        max-height: 60vh;
+    }
+
+    #section__hero h2{
+        text-align: center;
+        font-size: 30px;
+    }
+
+    #section__hero h2 span{
+        font-size: 80px;
+    }
+
+    .listado__marcas img{
+        width: 80px;
+    }
+
+    #section__filtro{
+        padding: 40px 20px;
+    }
+
+    .filter__wrapper{
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        flex-wrap: wrap;
+        padding: 30px 30px 10px;
+    }
+
+    .filter__wrapper h2{
+        margin-bottom: 50px;
+        margin-top: 20px;
+    }
+
+    .filter__wrapper .filter__indicator{
+        width: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter__wrapper #filter-form{
+        width: calc(100% - 80px);
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-left: 25px;
+        padding-right: 30px;
+    }
+
+    .filter__wrapper .filter__indicator ul{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        height: 100%;
+    }
+
+    .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 25%;
+      }
+
+      .step > span:last-child {
+        left: 0;
+        top: calc(50% - 12px);
+      }
+
+    #step-indicator::before {
+        width: 6px;
+        height: 75%;
+        left: 9px;
+        top: 12.5%;
+        display: block;
+        background-color: #464646;
+        z-index: 1;
+      }
+
+    #step-indicator li::before {
+    content: "";
+    position: absolute;
+    width: 6px !important;
+    height: 0%;
+    left: 10px;
+    top: calc(-50% + 4px);
+    display: block;
+    background-color: #176be8;
+    z-index: 2;
+    transition: height 0.2s ease-in-out;
+    }
+
+    #step-indicator .step.activo::before{
+        height: calc(100% + 4px);
+    }
+
+    #filter-form label{
+        width: 100%;
+        align-items: flex-start;
+        margin-bottom: 40px;
+    }
+
+    #filter-form label:last-child{
+        margin-bottom: 50px;
+    }
+
+    #results {
+        padding: 20px 20px 20px;
+        grid-template-columns: calc(50% - 10px) calc(50% - 10px);
+        gap: 20px;
+        background-color: #f3f5f7;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    #results span{
+        grid-column: 1 / 3;
+    }
+
+    .post__rad__brand > div:first-child{
+        width: 75%;
+    }
+
+    .post__rad__brand > div:last-child{
+        width: 25%;
+    }
+
+    .post p{
+        font-size: 15px;
+    }
+
+    .btn__w{
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    .btn__w::before{
+        height: 22px;
+        width: 22px;
+        background-size: 18px;
+    }
+
+    #section__banners{
+        padding: 0 20px;
+    }
+
+    #section__faq{
+        padding: 0 20px;
+    }
+
+    #section__banners .col__left{
+        padding-right: 10px;
+    }
+
+    #section__banners .col__right{
+        padding-left: 10px;
+    }
+
+    .accordion{
+        padding: 30px;
+    }
+    
+    .banner{
+        flex-direction: column;
+        padding: 20px 20px 0px;
+    }
+
+    .inner__banner__left{
+        width: 100%;
+        align-items: center;
+        padding: 0px;
+    }
+    
+    .inner__banner__right{
+        width: 100%;
+        align-items: center;
+        padding: 0px;
+    }
+
+    .banner__bg{
+        height: 100%;
+    }
+
+    .accordion__item .accordion__title{
+        font-size: 18px;
+    }
+
+    .accordion__item .accordion__content{
+        padding: 0px 0% 25px 0px;
+    }
+
+    footer h2{
+        font-size: 18px;
+    }
+
+    footer p{
+        font-size: 15px;
+    }
+
+    footer .col__left {
+        padding-right: 5%;
+    }
+
+    footer .col__left ul{
+        max-width: unset;
+    }
+
+    #aMensaje a{
+        font-size: 0px !important;
+        padding: 8px;
+        border-radius: 50px;
+    }
+
+    #aMensaje a img{
+        margin-right: 0px;
+    }
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+
+
 }
