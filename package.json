@@ -6,6 +6,10 @@
     "start": "eleventy --serve",
     "build": "eleventy"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/markerbranding/radisur.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
