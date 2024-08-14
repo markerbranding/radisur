@@ -10,7 +10,7 @@ layout: 'base.njk'
     <div class="col__left">
       <h1>Venta de radiadores para vehículos</h1>
       <h2>Encuentra el radiador <span>match</span> para tu vehículo.</h2>
-      <a class="btn" href="#">Buscar el radiador para mi coche</a>
+      <a id="btnHero" class="btn">Buscar el radiador para mi coche</a>
     </div>
     <div class="col__right">
       <div class="coche__inicio">
@@ -177,7 +177,12 @@ layout: 'base.njk'
     }
   });
 
-  console.log(calWidth);
+  
+
+  let btnhero = document.getElementById("btnHero");
+  btnhero.addEventListener("click", (e) => {
+    gsap.to(window, { duration: 0.5, scrollTo: { y: "#section__filtro", offsetY: 60 } });
+  });
 
 
   // INDICADOR FILTRO

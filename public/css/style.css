@@ -188,6 +188,7 @@ nav ul li a{
     background-color: #333;
     padding: 12px 10px 7px;
     border-radius: 50px;
+    cursor: pointer;
 }
 
 .hamburguer__icon span{
@@ -337,6 +338,10 @@ nav ul li a{
     background-size: contain;
     background-position: center;
     margin-right: 7px;
+}
+
+#btnHero{
+    cursor: pointer;
 }
 
 .coche__inicio {
@@ -598,6 +603,7 @@ nav ul li a{
     border-radius: 6px;
     width: 100%;
     outline: none;
+    color:#303030;
 }
 
 #filter-form button{
@@ -1393,7 +1399,7 @@ footer .column__1 a {
 
     #aMensaje a{
         font-size: 0px !important;
-        padding: 8px;
+        padding: 10px;
         border-radius: 50px;
     }
 
@@ -1407,8 +1413,22 @@ footer .column__1 a {
 @media screen and (max-width: 768px) {
 
     .rad__infograph{
-        width: 170px;
-        height: 120px;
+        width: 140px;
+        height: 110px;
+    }
+
+    .filter__wrapper{
+        padding: 10px;
+    }
+
+    .filter__wrapper .filter__indicator{
+        width: 45px;
+    }
+
+    .filter__wrapper #filter-form{
+        width: calc(100% - 45px);
+        padding-left: 10px;
+        padding-right: 5px;
     }
 
     #results {
