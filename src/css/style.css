@@ -1,5 +1,6 @@
 html{
     padding: 0;
+    overflow-x: hidden;
 }
 
 body{
@@ -9,6 +10,7 @@ body{
     font-weight: 400;
     color:#303030;
     background-color: #E8EAEC;
+    overflow-x: hidden;
 }
 
 *,
@@ -152,6 +154,13 @@ nav ul li a{
     color:#303030;
 }
 
+#whatsapp__wrapper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 #aMensaje a{
     padding: 10px 14px;
     text-transform: uppercase;
@@ -171,6 +180,99 @@ nav ul li a{
     width: 20px;
     height: 20px;
     margin-right: 5px;
+}
+
+.hamburguer__icon{
+    display: none;
+    margin-left: 10px;
+    background-color: #333;
+    padding: 12px 10px 7px;
+    border-radius: 50px;
+}
+
+.hamburguer__icon span{
+    display: block;
+    height: 2px;
+    width: 20px;
+    background-color: #e7edef;
+    margin-bottom: 5px;
+}
+
+#responsive__menu{
+    position: fixed;
+    right: -300px;
+    width: 300px;
+    height: 100vh;
+    background-color: #252525;
+    z-index: 102;
+    transition: right 0.3s ease-in-out;
+    padding: 30px;
+}
+
+#responsive__menu ul{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 50px;
+    width: 100%;
+}
+
+#responsive__menu ul li{
+    padding: 10px 0px;
+    border-bottom: 1px solid #444;
+    width: 100%;
+}
+
+#responsive__menu ul li a{
+    color:#fff;
+    padding: 10px 0px;
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#responsive__menu #aMensaje a{
+    font-size: 14px !important;
+}
+
+#responsive__menu #aMensaje img{
+    margin-right: 5px !important;
+}
+
+.close{
+    background-color: #444;
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    margin-bottom: 50px;
+    background-image: url(/assets/images/cross_accordion.svg);
+    background-repeat: no-repeat;
+    background-size: 60%;
+    background-position: center;
+    transform: rotate(45deg);
+}
+
+.cover__responsive{
+    position: fixed;
+    background-color: #000;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 101;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in;
+}
+
+.visible{
+    opacity: 0.6;
+    pointer-events: all;
 }
 
 .btn{
@@ -1013,6 +1115,20 @@ footer .column__1 a {
     filter: grayscale();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @media screen and (max-width: 1024px) {
     
     h1{
@@ -1029,8 +1145,16 @@ footer .column__1 a {
         line-height: 1.6;
     }
 
+    .hamburguer__icon{
+        display: block;
+    }
+
     .btn{
         font-size: 13px;
+    }
+    
+    .inner__header > nav {
+        display: none;
     }
     
     #section__hero{
@@ -1281,6 +1405,57 @@ footer .column__1 a {
 
 @media screen and (max-width: 768px) {
 
+    .rad__infograph{
+        width: 170px;
+        height: 120px;
+    }
 
+    #results {
+        padding: 20px 20px 20px;
+        grid-template-columns: 100%;
+        gap: 20px;
+        background-color: #f3f5f7;
+        border-radius: 0px 0px 10px 10px;
+    }
+
+    #results span{
+        grid-column: 1 / 3;
+    }
+
+    #section__banners .column__2{
+        flex-direction: column;
+        gap:40px
+    }
+
+    #section__banners .column__2 .col__left{
+        width: 100%;
+        padding-right: 0px;
+    }
+
+    #section__banners .column__2 .col__right{
+        width: 100%;
+        padding-left: 0px;
+    }
+
+    .banner{
+        flex-direction: row;
+        padding: 20px 20px 0px;
+    }
+
+    .inner__banner__left{
+        width: 100%;
+        align-items: flex-start;
+        padding: 0px;
+    }
+    
+    .inner__banner__right{
+        width: 100%;
+        align-items: flex-start;
+        padding: 0px;
+    }
+
+    .banner h2{
+        font-size: 20px;
+    }
 
 }

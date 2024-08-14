@@ -22,6 +22,12 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body class="page__{{ bodyClass }}">
+    <div id="responsive__menu" class="responsive__menu">
+        <a href="javascript:void(0);" class="close" onclick="myToogle()"></a>
+        {% include 'navigator.njk' %}
+        {% include 'navwhatsapp.njk' %}
+    </div>
+    <div id="cover__responsive" class="cover__responsive" onclick="myToogle()"></div>
     {% include 'header.njk' %}
     <div id="smooth-wrapper">
         <div id="smooth-content">
@@ -37,13 +43,42 @@
 
 <script>
 
-    // GSAP ScrollSmoother init
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+    //Hamburguesa
 
-    ScrollSmoother.create({
-        smooth: 1,
-        effects: true,
-        smoothTouch: 0.1,
-    });
+    function myToogle() {
+        var x = document.getElementById("responsive__menu");
+        var y = document.getElementById("cover__responsive");
+        if (x.style.right === "0px") {
+            x.style.right = "-300px";
+            y.classList.remove("visible");
+        } else {
+            x.style.right = "0px";
+            y.classList.add("visible");
+        }
+    }
+
+    ScrollTrigger.matchMedia({
+    "(min-width: 1024px)": function () {
+
+        
+        // GSAP ScrollSmoother init
+        ScrollSmoother.create({
+            smooth: 1,
+            effects: true,
+            smoothTouch: 0.1,
+        });
+        
+    },
+
+    // all media
+    all: function () {
+
+        // Registro de plugins
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+    },
+});
+
+    
 
 </script>

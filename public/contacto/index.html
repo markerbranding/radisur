@@ -22,19 +22,46 @@
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body class="page__contacto">
+    <div id="responsive__menu" class="responsive__menu">
+        <a href="javascript:void(0);" class="close" onclick="myToogle()"></a>
+        <nav>
+    <ul role="list">
+        <li><a href="/">Radiadores</a></li>
+        <li><a href="/nosotros/">Nosotros</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+    </ul>
+</nav>
+        <div id="aMensaje">
+    <a href="https://wa.me/5219993384647">
+        <img src="/assets/images/whatsapp.svg" /> Mensaje
+    </a>
+</div>
+    </div>
+    <div id="cover__responsive" class="cover__responsive" onclick="myToogle()"></div>
     <header id="section__header">
     <div class="inner__header">
         <a id="logo__header" href="/">
             <img src="/assets/images/radisur_logo.svg" />
         </a>
         <nav>
-            <ul role="list">
-                <li><a href="/">Radiadores</a></li>
-                <li><a href="/nosotros/">Nosotros</a></li>
-                <li><a href="/contacto/">Contacto</a></li>
-            </ul>
-        </nav>
-        <div id="aMensaje"><a href="https://wa.me/5219993384647"><img src="/assets/images/whatsapp.svg" />Mensaje</a></div>
+    <ul role="list">
+        <li><a href="/">Radiadores</a></li>
+        <li><a href="/nosotros/">Nosotros</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+    </ul>
+</nav>
+        <div id="whatsapp__wrapper">
+            <div id="aMensaje">
+    <a href="https://wa.me/5219993384647">
+        <img src="/assets/images/whatsapp.svg" /> Mensaje
+    </a>
+</div>
+            <div class="hamburguer__icon" onclick="myToogle()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
 </header>
     <div id="smooth-wrapper">
@@ -148,13 +175,42 @@
 
 <script>
 
-    // GSAP ScrollSmoother init
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+    //Hamburguesa
 
-    ScrollSmoother.create({
-        smooth: 1,
-        effects: true,
-        smoothTouch: 0.1,
-    });
+    function myToogle() {
+        var x = document.getElementById("responsive__menu");
+        var y = document.getElementById("cover__responsive");
+        if (x.style.right === "0px") {
+            x.style.right = "-300px";
+            y.classList.remove("visible");
+        } else {
+            x.style.right = "0px";
+            y.classList.add("visible");
+        }
+    }
+
+    ScrollTrigger.matchMedia({
+    "(min-width: 1024px)": function () {
+
+        
+        // GSAP ScrollSmoother init
+        ScrollSmoother.create({
+            smooth: 1,
+            effects: true,
+            smoothTouch: 0.1,
+        });
+        
+    },
+
+    // all media
+    all: function () {
+
+        // Registro de plugins
+        gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+    },
+});
+
+    
 
 </script>

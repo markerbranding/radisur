@@ -3,13 +3,14 @@
         <a id="logo__header" href="/">
             <img src="/assets/images/radisur_logo.svg" />
         </a>
-        <nav>
-            <ul role="list">
-                <li><a href="/">Radiadores</a></li>
-                <li><a href="/nosotros/">Nosotros</a></li>
-                <li><a href="/contacto/">Contacto</a></li>
-            </ul>
-        </nav>
-        <div id="aMensaje"><a href="https://wa.me/521{{contacto.whatsapp}}"><img src="/assets/images/whatsapp.svg" />Mensaje</a></div>
+        {% include 'navigator.njk' %}
+        <div id="whatsapp__wrapper">
+            {% include 'navwhatsapp.njk' %}
+            <div class="hamburguer__icon" onclick="myToogle()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </div>
 </header>
