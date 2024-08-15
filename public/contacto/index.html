@@ -72,12 +72,17 @@
   <div class="column__2 max1400">
     <div class="col__left">
       <h1>Venta de radiadores para vehículos</h1>
-      <h2>Encuentra el radiador <span>match</span> para tu vehículo.</h2>
-      <p>Tenemos un catálogo amplio para la mayoría de marcas de auto</p>
-      <a class="btn" href="#">Buscar el radiador para mi coche</a>
+      <h2>Contáctanos, somos los<span>expertos</span> en radiadores.</h2>
+      <a class="btn" href="#">Contáctanos</a>
     </div>
     <div class="col__right">
-      <img src="/assets/images/hero_inicio.jpg" />
+      <div class="inner__hero">
+        <img src="/assets/images/contacto/contacto_fg.png" />
+        <video width="720" height="720" autoplay muted loop playsinline>
+            <source src="/assets/images/road_bg.mp4" type="video/mp4">
+            Tu navegador no soporta este formato de video.
+        </video>
+    </div>
     </div>
   </div>
 </section>
@@ -86,16 +91,19 @@
   <div class="column__1 max1400">
     <div id="data__contacto__wrapper">
       <div class="data__contacto">
-        <img src="/assets/images/nosotros/proxy.svg" />
+        <img src="/assets/images/contacto/icono_telefono.svg" />
+        <h2>Teléfono oficina:</h2>
         <a href="tel:+5219993384648">9993384648</a>
       </div>
       <div class="data__contacto">
-        <img src="/assets/images/nosotros/proxy.svg" />
-        <a href="tel:+5219993384648">9993384648</a>
+        <img src="/assets/images/contacto/icono_whatsapp.svg" />
+        <h2>WhatsApp:</h2>
+        <a href="https://wa.me/5219993384647" target="_blank">9993384647</a>
       </div>
       <div class="data__contacto">
-        <img src="/assets/images/nosotros/proxy.svg" />
-        <a href="tel:+5219993384648">9993384648</a>
+        <img src="/assets/images/contacto/icono_correo.svg" />
+        <h2>Correo electrónico:</h2>
+        <a href="mailto:ventas@radisur.mx">ventas@radisur.mx</a>
       </div>
     </div>
   </div>
@@ -131,6 +139,39 @@
     </div>
   </div>
 </section>
+
+<section id="section__banners">
+  <div class="column__2 max1400">
+    <div class="col__left">
+      <a href="/nosotros/" id="banner__nosotros" class="banner">
+        <div class="inner__banner__left">
+          <h2>Conoce más de nosotros</h2>
+          <p class="btn">Más información</p>
+        </div>
+        <div class="inner__banner__right">
+          <img src="/assets/images/banner_nosotros.png" />
+        </div>
+        <div class="banner__bg"></div>
+      </a>
+    </div>
+    <div class="col__right">
+      <a href="/contacto/" id="banner__contacto" class="banner">
+        <div class="inner__banner__left">
+          <h2>Resolvemos tus dudas</h2>
+          <p class="btn">Contáctanos</p>
+        </div>
+        <div class="inner__banner__right">
+          <img src="/assets/images/banner_contacto.png" />
+        </div>
+        <div class="banner__bg"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+</script>
             </main>
             <footer id="site__footer">
   <div class="column__2 max1400">
@@ -167,7 +208,6 @@
   </div>
   
 </footer>
-
         </div>
     </div>
 </body>
@@ -176,7 +216,6 @@
 <script>
 
     //Hamburguesa
-
     function myToogle() {
         var x = document.getElementById("responsive__menu");
         var y = document.getElementById("cover__responsive");
@@ -190,26 +229,25 @@
     }
 
     ScrollTrigger.matchMedia({
-    "(min-width: 1024px)": function () {
+        "(min-width: 1025px)": function () {
 
-        
-        // GSAP ScrollSmoother init
-        ScrollSmoother.create({
-            smooth: 1,
-            effects: true,
-            smoothTouch: 0.1,
-        });
-        
-    },
+            // GSAP ScrollSmoother init
+            ScrollSmoother.create({
+                smooth: 1,
+                effects: true,
+                smoothTouch: 0.1,
+            });   
 
-    // all media
-    all: function () {
+        },
 
-        // Registro de plugins
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+        // all media
+        all: function () {
 
-    },
-});
+            // Registro de plugins
+            gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+        },
+    });
 
     
 

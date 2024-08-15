@@ -71,13 +71,18 @@
 <section id="section__hero">
   <div class="column__2 max1400">
     <div class="col__left">
-      <h1>Venta de radiadores para vehículos</h1>
-      <h2>Encuentra el radiador <span>match</span> para tu vehículo.</h2>
-      <p>Tenemos un catálogo amplio para la mayoría de marcas de auto</p>
-      <a class="btn" href="#">Buscar el radiador para mi coche</a>
+      <h1>Somos expertos en radiadores</h1>
+      <h2>Ofrecemos productos de <span>calidad</span> para tu automóvil.</h2>
+      <a id="btnHero" class="btn">Conoce más de nosotros</a>
     </div>
     <div class="col__right">
-      <img src="/assets/images/hero_inicio.jpg" />
+        <div class="inner__hero">
+            <img src="/assets/images/nosotros/nosotros_fg.png" />
+            <video width="720" height="720" autoplay muted loop playsinline>
+                <source src="/assets/images/road_bg.mp4" type="video/mp4">
+                Tu navegador no soporta este formato de video.
+            </video>
+        </div>
     </div>
   </div>
 </section>
@@ -101,7 +106,7 @@
 
 <section id="section__valores">
     <div class="column__1 max1400">
-        <h2>Nuestros valores</h2>
+        <h2>Somos una empresa que se rige por valores:</h2>
         <div class="listado__valores">
             <div class="valor">
                 <img src="/assets/images/nosotros/proxy.svg" alt="Valor 1" />
@@ -138,6 +143,39 @@
         </div>
     </div>
 </section>
+
+<section id="section__banners">
+    <div class="column__2 max1400">
+      <div class="col__left">
+        <a href="/nosotros/" id="banner__nosotros" class="banner">
+          <div class="inner__banner__left">
+            <h2>Conoce más de nosotros</h2>
+            <p class="btn">Más información</p>
+          </div>
+          <div class="inner__banner__right">
+            <img src="/assets/images/banner_nosotros.png" />
+          </div>
+          <div class="banner__bg"></div>
+        </a>
+      </div>
+      <div class="col__right">
+        <a href="/contacto/" id="banner__contacto" class="banner">
+          <div class="inner__banner__left">
+            <h2>Resolvemos tus dudas</h2>
+            <p class="btn">Contáctanos</p>
+          </div>
+          <div class="inner__banner__right">
+            <img src="/assets/images/banner_contacto.png" />
+          </div>
+          <div class="banner__bg"></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+  </script>
             </main>
             <footer id="site__footer">
   <div class="column__2 max1400">
@@ -174,7 +212,6 @@
   </div>
   
 </footer>
-
         </div>
     </div>
 </body>
@@ -183,7 +220,6 @@
 <script>
 
     //Hamburguesa
-
     function myToogle() {
         var x = document.getElementById("responsive__menu");
         var y = document.getElementById("cover__responsive");
@@ -197,26 +233,25 @@
     }
 
     ScrollTrigger.matchMedia({
-    "(min-width: 1024px)": function () {
+        "(min-width: 1025px)": function () {
 
-        
-        // GSAP ScrollSmoother init
-        ScrollSmoother.create({
-            smooth: 1,
-            effects: true,
-            smoothTouch: 0.1,
-        });
-        
-    },
+            // GSAP ScrollSmoother init
+            ScrollSmoother.create({
+                smooth: 1,
+                effects: true,
+                smoothTouch: 0.1,
+            });   
 
-    // all media
-    all: function () {
+        },
 
-        // Registro de plugins
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+        // all media
+        all: function () {
 
-    },
-});
+            // Registro de plugins
+            gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+        },
+    });
 
     
 

@@ -311,22 +311,38 @@
 
 <script src="../assets/scripts/accordion.js"></script>
 <script>
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+ScrollTrigger.matchMedia({
+        "(min-width: 1025px)": function () {
 
-  // GSAP
-  let heroHeight = gsap.getProperty("#section__hero", "height");
-  let brandsWidth = document.getElementById("listado__marcas").offsetWidth
-  let windowWidth = window.innerWidth;
-  let calWidth = brandsWidth - windowWidth;
+          // GSAP
+          let heroHeight = gsap.getProperty("#section__hero", "height");
+          let brandsWidth = document.getElementById("listado__marcas").offsetWidth
+          let windowWidth = window.innerWidth;
+          let calWidth = brandsWidth - windowWidth;
 
-  gsap.to(".listado__marcas", {
-    x: `${calWidth*-1}`,
-    scrollTrigger: {
-      trigger: "main",
-      start: "top top",
-      scrub: true,
-      end: `${heroHeight}px 20%`,
-    }
-  });
+          gsap.to(".listado__marcas", {
+            x: `${calWidth*-1}`,
+            scrollTrigger: {
+              trigger: "main",
+              start: "top top",
+              scrub: true,
+              end: `${heroHeight}px 20%`,
+            }
+          });
+          
+        },
+
+        // all media
+        all: function () {
+
+            
+
+        },
+    });
+
+  
+  
 
   
 
@@ -608,7 +624,6 @@ document.getElementById('modelo-select').addEventListener('change', function() {
   </div>
   
 </footer>
-
         </div>
     </div>
 </body>
@@ -617,7 +632,6 @@ document.getElementById('modelo-select').addEventListener('change', function() {
 <script>
 
     //Hamburguesa
-
     function myToogle() {
         var x = document.getElementById("responsive__menu");
         var y = document.getElementById("cover__responsive");
@@ -631,26 +645,25 @@ document.getElementById('modelo-select').addEventListener('change', function() {
     }
 
     ScrollTrigger.matchMedia({
-    "(min-width: 1024px)": function () {
+        "(min-width: 1025px)": function () {
 
-        
-        // GSAP ScrollSmoother init
-        ScrollSmoother.create({
-            smooth: 1,
-            effects: true,
-            smoothTouch: 0.1,
-        });
-        
-    },
+            // GSAP ScrollSmoother init
+            ScrollSmoother.create({
+                smooth: 1,
+                effects: true,
+                smoothTouch: 0.1,
+            });   
 
-    // all media
-    all: function () {
+        },
 
-        // Registro de plugins
-        gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+        // all media
+        all: function () {
 
-    },
-});
+            // Registro de plugins
+            gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+        },
+    });
 
     
 

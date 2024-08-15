@@ -160,22 +160,38 @@ layout: 'base.njk'
 
 <script src="../assets/scripts/accordion.js"></script>
 <script>
+gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+ScrollTrigger.matchMedia({
+        "(min-width: 1025px)": function () {
 
-  // GSAP
-  let heroHeight = gsap.getProperty("#section__hero", "height");
-  let brandsWidth = document.getElementById("listado__marcas").offsetWidth
-  let windowWidth = window.innerWidth;
-  let calWidth = brandsWidth - windowWidth;
+          // GSAP
+          let heroHeight = gsap.getProperty("#section__hero", "height");
+          let brandsWidth = document.getElementById("listado__marcas").offsetWidth
+          let windowWidth = window.innerWidth;
+          let calWidth = brandsWidth - windowWidth;
 
-  gsap.to(".listado__marcas", {
-    x: `${calWidth*-1}`,
-    scrollTrigger: {
-      trigger: "main",
-      start: "top top",
-      scrub: true,
-      end: `${heroHeight}px 20%`,
-    }
-  });
+          gsap.to(".listado__marcas", {
+            x: `${calWidth*-1}`,
+            scrollTrigger: {
+              trigger: "main",
+              start: "top top",
+              scrub: true,
+              end: `${heroHeight}px 20%`,
+            }
+          });
+          
+        },
+
+        // all media
+        all: function () {
+
+            
+
+        },
+    });
+
+  
+  
 
   
 
