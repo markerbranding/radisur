@@ -215,7 +215,7 @@
           <option value="">Selecciona una opción</option>
         </select></label>
         <label>Encuentra tu radiador:
-          <button type="submit" disabled>Buscar</button>
+          <button id="btn-filtrar" type="submit" disabled>Buscar</button>
         </label>
       </form>
     </div>
@@ -331,6 +331,15 @@ ScrollTrigger.matchMedia({
             }
           });
           
+        },
+
+        "(max-width: 1024px)": function () {
+
+          let btnfiltrar = document.getElementById("btn-filtrar");
+          btnfiltrar.addEventListener("click", (e) => {
+            gsap.to(window, { duration: 0.5, scrollTo: { y: "#results", offsetY: 120 } });
+          });
+
         },
 
         // all media

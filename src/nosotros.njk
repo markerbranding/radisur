@@ -84,13 +84,13 @@ layout: 'base.njk'
 <section id="section__banners">
     <div class="column__2 max1400">
       <div class="col__left">
-        <a href="/nosotros/" id="banner__nosotros" class="banner">
+        <a href="/" id="banner__radiadores" class="banner">
           <div class="inner__banner__left">
-            <h2>Conoce más de nosotros</h2>
-            <p class="btn">Más información</p>
+            <h2>Encuentra el radiador</h2>
+            <p class="btn">Buscar</p>
           </div>
           <div class="inner__banner__right">
-            <img src="/assets/images/banner_nosotros.png" />
+            <img src="/assets/images/banner_radiadores.png" />
           </div>
           <div class="banner__bg"></div>
         </a>
@@ -112,4 +112,10 @@ layout: 'base.njk'
 
   <script>
     gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+    let btnhero = document.getElementById("btnHero");
+    btnhero.addEventListener("click", (e) => {
+        gsap.to(window, { duration: 0.5, scrollTo: { y: "#section__intro__nosotros", offsetY: 80 } });
+    });
+
   </script>

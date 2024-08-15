@@ -909,6 +909,10 @@ button:disabled {
     background-color: #c20037;
 }
 
+#banner__radiadores .banner__bg{
+    background-color: #303030;
+}
+
 .banner:hover .inner__banner__right img{
     transform: scale(1.05) !important;
 }
@@ -1217,6 +1221,29 @@ footer .column__1 a {
 
 
 
+
+
+
+@media screen and (max-width: 1350px) {
+
+    h1{
+        font-size: 16px;
+        margin-bottom: 10px;
+    }
+
+    #section__hero h2{
+        font-size: 28px;
+    }
+
+    #section__hero h2 span{
+        font-size: 80px;
+    }
+
+    .btn{
+        font-size: 12px;
+    }
+
+}
 
 
 

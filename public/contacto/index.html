@@ -73,7 +73,7 @@
     <div class="col__left">
       <h1>Venta de radiadores para vehículos</h1>
       <h2>Contáctanos, somos los<span>expertos</span> en radiadores.</h2>
-      <a class="btn" href="#">Contáctanos</a>
+      <a id="btnHero" class="btn">Contáctanos</a>
     </div>
     <div class="col__right">
       <div class="inner__hero">
@@ -155,13 +155,13 @@
       </a>
     </div>
     <div class="col__right">
-      <a href="/contacto/" id="banner__contacto" class="banner">
+      <a href="/" id="banner__radiadores" class="banner">
         <div class="inner__banner__left">
-          <h2>Resolvemos tus dudas</h2>
-          <p class="btn">Contáctanos</p>
+          <h2>Encuentra el radiador</h2>
+          <p class="btn">Buscar</p>
         </div>
         <div class="inner__banner__right">
-          <img src="/assets/images/banner_contacto.png" />
+          <img src="/assets/images/banner_radiadores.png" />
         </div>
         <div class="banner__bg"></div>
       </a>
@@ -171,6 +171,12 @@
 
 <script>
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+  let btnhero = document.getElementById("btnHero");
+  btnhero.addEventListener("click", (e) => {
+    gsap.to(window, { duration: 0.5, scrollTo: { y: "#section__contact__data", offsetY: 100 } });
+  });
+
 </script>
             </main>
             <footer id="site__footer">
