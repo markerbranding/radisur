@@ -189,7 +189,7 @@
       <ul role="list">
         <li>
           <h2>Oficinas</h2>
-          <p>Calle 45 x 56 y 58 #457 Colonia Santa Gertrudis Copó. C.P. 97305. Mérida, Yucatán.</p>
+          <p>Avenida Cupules 198-A entre calle 16 y 18, Colonia García Ginerés, C.P. 97070. Mérida, Yucatán</p>
         </li>
         <li>
           <a href="#"><span>Aviso de privacidad</span></a>
@@ -225,6 +225,9 @@
 
 <script>
 
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+
     //Hamburguesa
     function myToogle() {
         var x = document.getElementById("responsive__menu");
@@ -250,13 +253,7 @@
 
         },
 
-        // all media
-        all: function () {
-
-            // Registro de plugins
-            gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
-
-        },
+        
     });
 
     

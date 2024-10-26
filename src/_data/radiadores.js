@@ -9361,7 +9361,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2003",
     "motor": "V6 3.2",
@@ -9376,7 +9376,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2004",
     "motor": "V6 3.2",
@@ -9391,7 +9391,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2004",
     "motor": "V6 3.6, V8 5.7",
@@ -9406,7 +9406,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2005",
     "motor": "V6 3.6, V8 5.7",
@@ -9421,7 +9421,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2006",
     "motor": "V6 3.6, V8 5.7",
@@ -9436,7 +9436,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2007",
     "motor": "V6 3.6, V8 5.7",
@@ -9451,7 +9451,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2008",
     "motor": "V6 3.6",
@@ -9466,7 +9466,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2009",
     "motor": "V6 3.6",
@@ -9481,7 +9481,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2010",
     "motor": "V6 3.6",
@@ -9496,7 +9496,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2011",
     "motor": "V6 3.6",
@@ -9511,7 +9511,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2012",
     "motor": "V6 3.6",
@@ -9526,7 +9526,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2013",
     "motor": "V6 3.6",
@@ -9541,7 +9541,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Cadillac ",
+    "marca": "Cadillac",
     "modelo": "CTS",
     "ano": "2014",
     "motor": "V6 3.6",
@@ -78676,7 +78676,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2007",
     "motor": "L4 2.0",
@@ -78691,7 +78691,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2008",
     "motor": "L4 2.0",
@@ -78706,7 +78706,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2009",
     "motor": "L4 2.0",
@@ -78721,7 +78721,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2010",
     "motor": "L4 2.0",
@@ -78736,7 +78736,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2011",
     "motor": "L4 2.0",
@@ -78751,7 +78751,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2012",
     "motor": "L4 2.0",
@@ -78766,7 +78766,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2013",
     "motor": "L4 2.0",
@@ -78781,7 +78781,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "SX4",
     "ano": "2014",
     "motor": "L4 2.0",
@@ -78796,7 +78796,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "XL-7",
     "ano": "2007",
     "motor": "V6 3.6",
@@ -78811,7 +78811,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "XL-7",
     "ano": "2008",
     "motor": "V6 3.6",
@@ -78826,7 +78826,7 @@ module.exports  = [
   },
 {
     "layout": "radiador",
-    "marca": "Suzuki ",
+    "marca": "Suzuki",
     "modelo": "XL-7",
     "ano": "2009",
     "motor": "V6 3.6",

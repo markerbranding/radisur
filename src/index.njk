@@ -134,566 +134,202 @@ layout: 'base.njk'
 </section>
 
 
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-  const radiadoresData = {{ radiadores | json | safe }};
-  const resultadosLista = document.getElementById('resultados');
-
-  const initFilters = (data) => {
-    const marcaSelect = document.getElementById('marca-select');
-    const anioSelect = document.getElementById('anio-select');
-    const modeloSelect = document.getElementById('modelo-select');
-    const btnFiltrar = document.getElementById('btn-filtrar');
-
-    // Deshabilitar selects inicialmente
-    anioSelect.disabled = true;
-    modeloSelect.disabled = true;
-    btnFiltrar.disabled = true;
-
-    // Obtener todas las marcas únicas
-    const marcasDisponibles = [...new Set(data.map(radiador => radiador.marca))];
-    marcasDisponibles.forEach(marca => {
-      marcaSelect.innerHTML += `<option value="${marca}">${marca}</option>`;
-    });
-
-    // Evento para cuando se selecciona una marca
-    marcaSelect.addEventListener('change', function() {
-      const marcaSeleccionada = this.value;
-      const anosDisponibles = [...new Set(data
-        .filter(radiador => radiador.marca === marcaSeleccionada)
-        .map(radiador => radiador.ano))];
-
-      // Poblar el select de años
-      anioSelect.innerHTML = '<option value="">Selecciona un año</option>';
-      anosDisponibles.forEach(ano => {
-        anioSelect.innerHTML += `<option value="${ano}">${ano}</option>`;
-      });
-      anioSelect.disabled = anosDisponibles.length === 0;
-      modeloSelect.disabled = true;
-    });
-
-    // Evento para cuando se selecciona un año
-    anioSelect.addEventListener('change', function() {
-      const marcaSeleccionada = marcaSelect.value;
-      const anioSeleccionado = this.value;
-      const modelosDisponibles = [...new Set(data
-        .filter(radiador => radiador.marca === marcaSeleccionada && radiador.ano === anioSeleccionado)
-        .map(radiador => radiador.modelo))];
-
-      // Poblar el select de modelos
-      modeloSelect.innerHTML = '<option value="">Selecciona un modelo</option>';
-      modelosDisponibles.forEach(modelo => {
-        modeloSelect.innerHTML += `<option value="${modelo}">${modelo}</option>`;
-      });
-      modeloSelect.disabled = modelosDisponibles.length === 0;
-    });
-
-    // Habilitar el botón de búsqueda solo si se seleccionan todos los campos
-    const toggleSubmitButton = () => {
-      btnFiltrar.disabled = !(marcaSelect.value && anioSelect.value && modeloSelect.value);
-    };
-
-    marcaSelect.addEventListener('change', toggleSubmitButton);
-    anioSelect.addEventListener('change', toggleSubmitButton);
-    modeloSelect.addEventListener('change', toggleSubmitButton);
-
-    // Mostrar tarjetas cuando se da clic en "Buscar"
-    btnFiltrar.addEventListener('click', function(event) {
-      event.preventDefault();
-
-      const marcaSeleccionada = marcaSelect.value;
-      const anioSeleccionado = anioSelect.value;
-      const modeloSeleccionado = modeloSelect.value;
-
-      // Filtrar los resultados basados en la selección
-      const resultadosFiltrados = data.filter(radiador => 
-        radiador.marca === marcaSeleccionada &&
-        radiador.ano === anioSeleccionado &&
-        radiador.modelo === modeloSeleccionado
-      );
-
-      // Mostrar los resultados
-      mostrarResultados(resultadosFiltrados);
-    });
-  };
-
-  // Función para mostrar los resultados filtrados como tarjetas
-  const mostrarResultados = (resultados) => {
-    resultadosLista.innerHTML = ''; // Limpiar resultados anteriores
-
-    if (resultados.length > 0) {
-      resultados.forEach(radiador => {
-        const tarjeta = `
-          <li class="resultado-item post">
-            <div class="tarjeta">
-              <div class="post__rad__img">
-                <img src="/assets/images/radiadores/${radiador.parte.toLowerCase()}.jpg" />
-              </div>
-              <div class="post__rad__title">
-                <h2>Radiador ${radiador.parte}<h2>
-              </div>
-
-              <div class="post__rad__brand">
-                <div>
-                  <p>Compatible con: <strong>${radiador.marca}</strong></p>
-                  <p>Año: <strong>${radiador.ano}</strong></p>
-                  <p>Modelo: <strong>${radiador.modelo}</strong></p>
-                </div>
-                <div>
-                  <img src="/assets/images/marcas/${radiador.marca.toLowerCase()}.svg" />
-                </div>
-              </div>
-
-              <div class="post__rad__body">
-                <p>Motor: <strong>${radiador.motor}</strong></p>
-                <p>Transmisión: <strong>${radiador.transmision}</strong></p>
-                <p>Clima: <strong>${radiador.clima}</strong></p>
-                <p>Medidas: <strong>${radiador.ancho}</strong> de ancho x <strong>${radiador.alto}</strong> de alto</p>
-              </div>
-
-
-
-              <div class="post__rad__btn">
-                <a href="/radiadores/${radiador.slug}/">Ver detalle de la pieza</a>
-                <a href="https://wa.me/521{{contacto.whatsapp}}?text=Hola,%20estoy%20interestedo%20en%20el%20radiador%20${radiador.parte}%20para%20${radiador.marca}%20${radiador.ano}%20${radiador.modelo}%20motor%20${radiador.motor}" target="_blank" class="btn__w">Contactar para más información</a>
-              </div>
-
-            </div>
-          </li>
-        `;
-        resultadosLista.innerHTML += tarjeta;
-      });
-    } else {
-      resultadosLista.innerHTML = '<p>No se encontraron radiadores para esta búsqueda.</p>';
-    }
-  };
-
-  initFilters(radiadoresData);
-});
-</script>
-
-<!--
-<section id="section__filtro">
-  <div class="column__1 max1400">
-    <div class="filter__wrapper">
-      <h2>Selecciona las opciones para encontrar el radiador para tu vehículo:</h2>
-      <div class="filter__indicator">
-        <div id="step-timeline"></div>
-        <ul id="step-indicator" role="list">
-          <li class="step activo"><span>1</span><span></span></li>
-          <li class="step"><span>2</span><span></span></li>
-          <li class="step"><span>3</span><span></span></li>
-          <li class="step"><span>4</span><span></span></li>
-        </ul>
-      </div>
-      <form id="filter-form">
-        <label>Elige la marca:
-        <select id="marca-select" name="marca">
-          <option value="">Selecciona una opción</option>
-          <option value="Volkswagen">Volkswagen</option>
-          <option value="Mercedes Benz">Mercedes Benz</option>
-          <option value="Volvo">Volvo</option>
-          <option value="Toyota">Toyota</option>
-          <option value="Suzuki">Suzuki</option>
-          <option value="Subaru">Subaru</option>
-          <option value="Seat">Seat</option>
-          <option value="Saab">Saab</option>
-          <option value="Renault">Renault</option>
-          <option value="Peugeot">Peugeot</option>
-          <option value="Pontiac">Pontiac</option>
-          <option value="Nissan">Nissan</option>
-          <option value="Mitsubishi">Mitsubishi</option>
-          <option value="Mazda">Mazda</option>
-          <option value="Lincoln">Lincoln</option>
-          <option value="Kia">Kia</option>
-          <option value="Jeep">Jeep</option>
-          <option value="Infiniti">Infiniti</option>
-          <option value="Hyundai">Hyundai</option>
-          <option value="Hummer">Hummer</option>
-          <option value="Honda">Honda</option>
-          <option value="Ford">Ford</option>
-          <option value="Fiat">Fiat</option>
-          <option value="Chrysler / Dodge">Chrysler / Dodge</option>
-          <option value="Chevrolet">Chevrolet</option>
-          <option value="Cadillac">Cadillac</option>
-          <option value="Buick">Buick</option>
-          <option value="BMW">BMW</option>
-          <option value="Audi">Audi</option>
-          <option value="Acura">Acura</option>
-        </select></label>
-        <label>Elige el año:
-        <select id="anio-select" name="anio" disabled>
-          <option value="">Selecciona una opción</option>
-        </select></label>
-        <label>Elige el modelo:
-        <select id="modelo-select" name="modelo" disabled>
-          <option value="">Selecciona una opción</option>
-        </select></label>
-        <label>Encuentra tu radiador:
-          <button id="btn-filtrar" type="submit" disabled>Buscar</button>
-        </label>
-      </form>
-    </div>
-  </div>
-  <div class="column__1 max1400">
-    <ul role="list" id="results">
-      <span>- Busca el radiador que hace MATCH con tu vehículo -</span>
-    </ul>
-  </div>
-</section>
-
-<section id="section__banners">
-  <div class="column__2 max1400">
-    <div class="col__left">
-      <a href="/nosotros/" id="banner__nosotros" class="banner">
-        <div class="inner__banner__left">
-          <h2>Conoce más de nosotros</h2>
-          <p class="btn">Más información</p>
-        </div>
-        <div class="inner__banner__right">
-          <img src="/assets/images/banner_nosotros.png" />
-        </div>
-        <div class="banner__bg"></div>
-      </a>
-    </div>
-    <div class="col__right">
-      <a href="/contacto/" id="banner__contacto" class="banner">
-        <div class="inner__banner__left">
-          <h2>Resolvemos tus dudas</h2>
-          <p class="btn">Contáctanos</p>
-        </div>
-        <div class="inner__banner__right">
-          <img src="/assets/images/banner_contacto.png" />
-        </div>
-        <div class="banner__bg"></div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section id="section__faq">
-  <div class="column__1 max1400">
-    <div class="accordion">
-      <h2>Respuestas a las preguntas más populares</h2>
-      {%- for faq in collections.faq -%}
-        <div class="accordion__item">
-          <div class="accordion__title">
-            <div class="accordion__arrow">
-              <span class="accordion__arrow-item "></span>
-            </div>
-            <span class="accordion__title-text">{{ faq.data.pregunta }}</span>
-          </div>
-          <div class="accordion__content">
-            {{ faq.content | safe }}
-          </div>
-        </div>
-      {%- endfor -%}
-    </div>
-  </div>
-</section>
-
-
-
 <script src="../assets/scripts/accordion.js"></script>
 <script>
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
-ScrollTrigger.matchMedia({
-        "(min-width: 1025px)": function () {
 
-          // GSAP
-          let heroHeight = gsap.getProperty("#section__hero", "height");
-          let brandsWidth = document.getElementById("listado__marcas").offsetWidth
-          let windowWidth = window.innerWidth;
-          let calWidth = brandsWidth - windowWidth;
+  // Filtro y Carga de Cards:
+  document.addEventListener('DOMContentLoaded', () => {
+    const radiadoresData = {{ radiadores | json | safe }};
+    const resultadosLista = document.getElementById('resultados');
+    const steps = document.querySelectorAll('#step-indicator .step');
 
-          gsap.to(".listado__marcas", {
-            x: `${calWidth*-1}`,
-            scrollTrigger: {
-              trigger: "main",
-              start: "top top",
-              scrub: true,
-              end: `${heroHeight}px 20%`,
-            }
+    const initFilters = (data) => {
+      const marcaSelect = document.getElementById('marca-select');
+      const anioSelect = document.getElementById('anio-select');
+      const modeloSelect = document.getElementById('modelo-select');
+      const btnFiltrar = document.getElementById('btn-filtrar');
+
+      // Deshabilitar selects y botón inicialmente
+      anioSelect.disabled = true;
+      modeloSelect.disabled = true;
+      btnFiltrar.disabled = true;
+
+      // Función para actualizar el paso activo
+      const updateStepIndicator = (currentStep) => {
+        steps.forEach((step, index) => {
+          if (index < currentStep) {
+            step.classList.add('activo');
+          } else {
+            step.classList.remove('activo');
+          }
+        });
+      };
+
+      // Obtener todas las marcas únicas
+      const marcasDisponibles = [...new Set(data.map(radiador => radiador.marca))];
+      marcasDisponibles.forEach(marca => {
+        marcaSelect.innerHTML += `<option value="${marca}">${marca}</option>`;
+      });
+
+      // Evento para cuando se selecciona una marca
+      marcaSelect.addEventListener('change', function() {
+        const marcaSeleccionada = this.value;
+
+        if (marcaSeleccionada) {
+          // Filtrar y ordenar los años disponibles para la marca seleccionada
+          const anosDisponibles = [...new Set(data
+            .filter(radiador => radiador.marca === marcaSeleccionada)
+            .map(radiador => radiador.ano))].sort((a, b) => b - a);
+
+          // Poblar y habilitar el select de años
+          anioSelect.innerHTML = '<option value="">Selecciona un año</option>';
+          anosDisponibles.forEach(ano => {
+            anioSelect.innerHTML += `<option value="${ano}">${ano}</option>`;
           });
+          anioSelect.disabled = anosDisponibles.length === 0;
           
-        },
+          // Limpiar y deshabilitar modelo
+          modeloSelect.innerHTML = '<option value="">Selecciona un modelo</option>';
+          modeloSelect.disabled = true;
 
-        "(max-width: 1024px)": function () {
+          // Actualizar paso
+          updateStepIndicator(2);
+        } else {
+          // Si no se seleccionó una marca, resetear los selects y deshabilitar los pasos siguientes
+          anioSelect.innerHTML = '<option value="">Selecciona un año</option>';
+          modeloSelect.innerHTML = '<option value="">Selecciona un modelo</option>';
+          anioSelect.disabled = true;
+          modeloSelect.disabled = true;
+          btnFiltrar.disabled = true;
+          updateStepIndicator(1);
+        }
+      });
 
-          let btnfiltrar = document.getElementById("btn-filtrar");
-          btnfiltrar.addEventListener("click", (e) => {
-            gsap.to(window, { duration: 0.5, scrollTo: { y: "#results", offsetY: 120 } });
+      // Evento para cuando se selecciona un año
+      anioSelect.addEventListener('change', function() {
+        const marcaSeleccionada = marcaSelect.value;
+        const anioSeleccionado = this.value;
+
+        if (anioSeleccionado) {
+          const modelosDisponibles = [...new Set(data
+            .filter(radiador => radiador.marca === marcaSeleccionada && radiador.ano === anioSeleccionado)
+            .map(radiador => radiador.modelo))];
+
+          // Poblar y habilitar el select de modelos
+          modeloSelect.innerHTML = '<option value="">Selecciona un modelo</option>';
+          modelosDisponibles.forEach(modelo => {
+            modeloSelect.innerHTML += `<option value="${modelo}">${modelo}</option>`;
           });
+          modeloSelect.disabled = modelosDisponibles.length === 0;
 
-        },
+          // Actualizar paso
+          updateStepIndicator(3);
+        } else {
+          // Si no se seleccionó un año, resetear y deshabilitar el select de modelo
+          modeloSelect.innerHTML = '<option value="">Selecciona un modelo</option>';
+          modeloSelect.disabled = true;
+          updateStepIndicator(2);
+        }
+      });
 
-        // all media
-        all: function () {
+      // Evento para cuando se selecciona un modelo
+      modeloSelect.addEventListener('change', function() {
+        if (modeloSelect.value) {
+          btnFiltrar.disabled = false;
+          updateStepIndicator(4);
+        } else {
+          btnFiltrar.disabled = true;
+          updateStepIndicator(3);
+        }
+      });
 
-            
+      // Evento para el botón de búsqueda
+      btnFiltrar.addEventListener('click', function(event) {
+        event.preventDefault();
 
-        },
-    });
+        const marcaSeleccionada = marcaSelect.value;
+        const anioSeleccionado = anioSelect.value;
+        const modeloSeleccionado = modeloSelect.value;
 
-  
-  
+        // Filtrar los resultados basados en la selección
+        const resultadosFiltrados = data.filter(radiador => 
+          radiador.marca === marcaSeleccionada &&
+          radiador.ano === anioSeleccionado &&
+          radiador.modelo === modeloSeleccionado
+        );
 
-  
+        // Mostrar los resultados
+        mostrarResultados(resultadosFiltrados);
+      });
+    };
+
+    // Función para mostrar los resultados filtrados como tarjetas
+    const mostrarResultados = (resultados) => {
+      resultadosLista.innerHTML = ''; // Limpiar resultados anteriores
+
+      if (resultados.length > 0) {
+        resultados.forEach(radiador => {
+          const tarjeta = `
+            <li class="resultado-item post">
+              <div class="tarjeta">
+                <div class="post__rad__img">
+                  <a href="/radiadores/${radiador.slug}/">
+                    <img src="/assets/images/radiadores/${radiador.parte.toLowerCase()}.jpg" 
+                    alt="Radiador ${radiador.parte} para ${radiador.marca} ${radiador.modelo} ${radiador.ano}" 
+                    onerror="this.onerror=null; this.src='/assets/images/radiadores/default.jpg';" />
+                  </a>
+                </div>
+                <div class="post__rad__title">
+                  <a href="/radiadores/${radiador.slug}/"><h2>Radiador ${radiador.parte}<h2></a>
+                </div>
+                <div class="post__rad__brand">
+                  <div>
+                    <p>Compatible con: <strong>${radiador.marca}</strong></p>
+                    <p>Año: <strong>${radiador.ano}</strong></p>
+                    <p>Modelo: <strong>${radiador.modelo}</strong></p>
+                  </div>
+                  <div>
+                    <img src="/assets/images/marcas/${radiador.marca.toLowerCase().replace(/\s+/g, '-').replace(/[\/]/g, '-')}.svg" 
+                      alt="Logo de ${radiador.marca}" 
+                      onerror="this.onerror=null; this.src='/assets/images/marcas/default.svg';" />
+                  </div>
+                </div>
+                <div class="post__rad__body">
+                  <p>Motor: <strong>${radiador.motor}</strong></p>
+                  <p>Transmisión: <strong>${radiador.transmision}</strong></p>
+                  <p>Clima: <strong>${radiador.clima}</strong></p>
+                  <p>Medidas: <strong>${radiador.ancho}</strong> de ancho por <strong>${radiador.alto}</strong> de alto</p>
+                </div>
+                <div class="post__rad__btn">
+                  <a class="btn btn__azul" href="/radiadores/${radiador.slug}/">Ver detalle de la pieza</a>
+                  <a class="btn__w" href="https://wa.me/521{{contacto.whatsapp}}?text=Hola,%20estoy%20interestedo%20en%20el%20radiador%20${radiador.parte}%20para%20${radiador.marca}%20${radiador.ano}%20${radiador.modelo}%20motor%20${radiador.motor}" target="_blank">Preguntar por WhatsApp</a>
+                </div>
+              </div>
+            </li>
+          `;
+          resultadosLista.innerHTML += tarjeta;
+        });
+      } else {
+        resultadosLista.innerHTML = '<p>No se encontraron radiadores para esta búsqueda.</p>';
+      }
+    };
+
+    initFilters(radiadoresData);
+  });
+
+
+
+  // GSAP
+  gsap.registerPlugin(ScrollTrigger);
 
   let btnhero = document.getElementById("btnHero");
   btnhero.addEventListener("click", (e) => {
     gsap.to(window, { duration: 0.5, scrollTo: { y: "#section__filtro", offsetY: 60 } });
   });
 
-
-  // INDICADOR FILTRO
-  
-  // Script para manejar el cambio de pasos
-function updateSteps(currentStep) {
-  const steps = document.querySelectorAll('#step-indicator li');
-  
-  // Desactivar todos los pasos después del actual
-  steps.forEach((step, index) => {
-    if (index >= currentStep - 1) {
-      step.classList.remove('activo');
-    }
-  });
-
-  // Activar el paso actual
-  if (currentStep > 0 && currentStep <= steps.length) {
-    steps[currentStep - 1].classList.add('activo');
-  }
-}
-
-document.getElementById('marca-select').addEventListener('change', function() {
-  const selectedMarca = this.value;
-  if (selectedMarca) {
-    document.getElementById('anio-select').disabled = false;
-    updateSteps(2);
-  } else {
-    document.getElementById('anio-select').disabled = true;
-    document.getElementById('anio-select').value = '';
-    document.getElementById('modelo-select').disabled = true;
-    document.getElementById('modelo-select').value = '';
-    document.querySelector('button[type="submit"]').disabled = true;
-    updateSteps(1);
-  }
-});
-
-document.getElementById('anio-select').addEventListener('change', function() {
-  const selectedAnio = this.value;
-  if (selectedAnio) {
-    document.getElementById('modelo-select').disabled = false;
-    updateSteps(3);
-  } else {
-    document.getElementById('modelo-select').disabled = true;
-    document.getElementById('modelo-select').value = '';
-    document.querySelector('button[type="submit"]').disabled = true;
-    updateSteps(2);
-  }
-});
-
-document.getElementById('modelo-select').addEventListener('change', function() {
-  const selectedModelo = this.value;
-  if (selectedModelo) {
-    document.querySelector('button[type="submit"]').disabled = false;
-    updateSteps(4);
-  } else {
-    document.querySelector('button[type="submit"]').disabled = true;
-    updateSteps(3);
-  }
-});
-
-
-  // LOAD API ITEMS
-  async function fetchData(url) {
-    const allData = [];
-    let page = 1;
-    let totalPages = 1;
-
-    do {
-      const response = await fetch(`${url}&page=${page}`);
-      const data = await response.json();
-      allData.push(...data);
-
-      totalPages = response.headers.get('X-WP-TotalPages') || 1;
-      page++;
-    } while (page <= totalPages);
-
-    return allData;
-  }
-
-  async function fetchUniqueValues(field) {
-    const url = `https://marker.com.mx/radisur/wp-json/wp/v2/posts?_fields=acf&per_page=100`;
-    try {
-      const posts = await fetchData(url);
-      const values = posts.map(post => post.acf[field]).filter(Boolean);
-      return [...new Set(values)];
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return [];
-    }
-  }
-
-  async function populateSelect(selectId, options) {
-    const select = document.getElementById(selectId);
-    select.innerHTML = '<option value="">Selecciona una opción</option>';
-    options.forEach(option => {
-      const opt = document.createElement('option');
-      opt.value = option;
-      opt.innerText = option;
-      select.appendChild(opt);
-    });
-  }
-
-  async function populateMarcas() {
-    const cachedMarcas = localStorage.getItem('cachedMarcas');
-    if (cachedMarcas) {
-      const marcas = JSON.parse(cachedMarcas);
-      await populateSelect('marca-select', marcas);
-    } else {
-      const marcas = await fetchUniqueValues('marca');
-      await populateSelect('marca-select', marcas);
-      localStorage.setItem('cachedMarcas', JSON.stringify(marcas));
-    }
-  }
-
-  async function populateAnios(marca) {
-    const url = new URL('https://marker.com.mx/radisur/wp-json/wp/v2/posts');
-    url.searchParams.append('marca', marca);
-    url.searchParams.append('_fields', 'anio');
-    url.searchParams.append('per_page', 100);
-
-    try {
-      const response = await fetch(url);
-      const posts = await response.json();
-      const anios = [...new Set(posts.map(post => post.anio))].filter(Boolean);
-
-      // Ordenar los años en orden cronológico
-      anios.sort((a, b) => b - a);
-
-      await populateSelect('anio-select', anios);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
-
-  async function populateModelos(marca, anio) {
-    const url = `https://marker.com.mx/radisur/wp-json/wp/v2/posts?_fields=acf&per_page=100&marca=${marca}&anio=${anio}`;
-    try {
-      const posts = await fetchData(url);
-      const modelos = [...new Set(posts.map(post => post.acf.modelo))].filter(Boolean);
-      await populateSelect('modelo-select', modelos);
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', populateMarcas);
-
-  document.getElementById('marca-select').addEventListener('change', async function() {
-    const selectedMarca = this.value;
-    if (selectedMarca) {
-      await populateAnios(selectedMarca);
-      document.getElementById('anio-select').disabled = false;
-      document.getElementById('modelo-select').disabled = true;
-      document.getElementById('modelo-select').innerHTML = '<option value="">Selecciona una opción</option>';
-      document.querySelector('button[type="submit"]').disabled = true;
-    } else {
-      document.getElementById('anio-select').disabled = true;
-      document.getElementById('modelo-select').disabled = true;
-      document.querySelector('button[type="submit"]').disabled = true;
-    }
-  });
-
-  document.getElementById('anio-select').addEventListener('change', async function() {
-    const selectedMarca = document.getElementById('marca-select').value;
-    const selectedAnio = this.value;
-    if (selectedAnio) {
-      await populateModelos(selectedMarca, selectedAnio);
-      document.getElementById('modelo-select').disabled = false;
-      document.querySelector('button[type="submit"]').disabled = true;
-    } else {
-      document.getElementById('modelo-select').disabled = true;
-      document.querySelector('button[type="submit"]').disabled = true;
-    }
-  });
-
-  document.getElementById('modelo-select').addEventListener('change', function() {
-    document.querySelector('button[type="submit"]').disabled = !this.value;
-  });
-
-  document.getElementById('filter-form').addEventListener('submit', async function(event) {
-    event.preventDefault();
-    ScrollTrigger.refresh();
-    const marca = document.getElementById('marca-select').value;
-    const anio = document.getElementById('anio-select').value;
-    const modelo = document.getElementById('modelo-select').value;
-
-    const url = new URL('https://marker.com.mx/radisur/wp-json/wp/v2/posts');
-    if (marca) url.searchParams.append('marca', marca);
-    if (anio) url.searchParams.append('anio', anio);
-    if (modelo) url.searchParams.append('modelo', modelo);
-
-    const queryString = url.search;
-    const newUrl = window.location.origin + window.location.pathname + queryString;
-    window.history.pushState({}, '', newUrl);
-
-    try {
-    const response = await fetch(url);
-    const data = await response.json();
-
-    // Renderiza los resultados en el div con id="results"
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = data.map(post => {
-      const marcaLower = post.acf.marca.toLowerCase().replace(/\s+/g, '-').replace(/[\/]/g, '-');
-      return `
-        <li class="post">
-          <div class="post__rad__img">
-            <img src="/assets/images/radiadores/${post.acf.parte}.jpg" />
-          </div>
-          <div class="post__rad__title">
-            <h2>Radiador ${post.acf.parte}<h2>
-          </div>
-          <div class="post__rad__brand">
-            <div>
-              <p>Compatible con: <strong>${post.acf.marca}</strong></p>
-              <p>Año: <strong>${post.acf.anio}</strong></p>
-              <p>Modelo: <strong>${post.acf.modelo}</strong></p>
-            </div>
-            <div>
-              <img src="/assets/images/marcas/${marcaLower}.svg" />
-            </div>
-          </div>
-          <div class="post__rad__body">
-            <p>Motor: <strong>${post.acf.motor}</strong></p>
-            <p>Transmisión: <strong>${post.acf.transmision}</strong></p>
-            <p>Clima: <strong>${post.acf.clima}</strong></p>
-            <p>Medidas: <strong>${post.acf.ancho}</strong> de ancho x <strong>${post.acf.ancho}</strong> de alto</p>
-          </div>
-          <div class="post__rad__btn">
-            <a href="https://wa.me/521{{contacto.whatsapp}}?text=Hola,%20estoy%20interestedo%20en%20el%20radiador%20${post.acf.parte}%20para%20${post.acf.marca}%20${post.acf.anio}%20${post.acf.modelo}%20motor%20${post.acf.motor}" target="_blank" class="btn__w">Contactar para más información</a>
-          </div>
-        </li>
-      `;
-    }).join('');
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-});
-</script>
-
--->
-
-<script src="../assets/scripts/accordion.js"></script>
-<script>
-
-  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
   ScrollTrigger.matchMedia({
     "(min-width: 1025px)": function () {
 
-      // GSAP
       let heroHeight = gsap.getProperty("#section__hero", "height");
       let brandsWidth = document.getElementById("listado__marcas").offsetWidth
       let windowWidth = window.innerWidth;
@@ -723,19 +359,7 @@ document.getElementById('modelo-select').addEventListener('change', function() {
     // all media
     all: function () {
 
-        
-
     },
-  });
-
-  
-  
-
-  
-
-  let btnhero = document.getElementById("btnHero");
-  btnhero.addEventListener("click", (e) => {
-    gsap.to(window, { duration: 0.5, scrollTo: { y: "#section__filtro", offsetY: 60 } });
   });
 
 </script>

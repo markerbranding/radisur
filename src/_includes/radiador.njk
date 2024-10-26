@@ -7,27 +7,79 @@ eleventyComputed:
   keywords: "{{ marca }}, {{modelo}}, {{transmision}}"
 ---
 
-<section id="section__detalle">
-    <div class="column__2 max1400">
-        <div class="col__left">
-            <h1>Radiador para vehículo marca {{ marca }} {{ modelo }} ({{ ano }})</h1>
-        </div>
-        <div class="col__right">
-            <img src="/assets/images/radiadores/{{parte.toLowerCase()}}.jpg" />
-        </div>
-    </div>
-</section>
+<article class="article__detalle">
 
-<section id="section__table">
-    <div class="column__2 max1400">
-        <div class="col__left">
-            <p>Motor: {{ motor }}</p>  
+    <section id="section__detalle">
+        <div class="column__2 max1400">
+            <div class="col__left">
+                <a href="/" class="back__search">Regresar al buscador</a>
+                <h1>Radiador {{ parte }}</h1>
+                <p>El radiador <strong>{{ parte }}</strong> es compatible con vehículos:</p>
+                <div class="inner__column">
+                    <ul role="list">
+                        <li>Marca <strong>{{ marca }}</strong></li>
+                        <li>Modelo: <strong>{{ modelo }}</strong></li>
+                        <li>Año: <strong>{{ ano }}</strong></li>
+                    </ul>
+                    <img class="marca__logo" src="/assets/images/marcas/{{ marca | normalizeString }}.svg" 
+                        alt="Logo de {{marca}}" />
+                </div>   
+                <a class="btn__w" href="https://wa.me/521{{contacto.whatsapp}}?text=Hola,%20estoy%20interestedo%20en%20el%20radiador%20{{parte}}%20para%20{{marca}}%20{{ano}}%20{{modelo}}%20motor%20{{motor}}" target="_blank">Preguntar por WhatsApp</a>
+            </div>
+            <div class="col__right">
+                <img src="/assets/images/radiadores/{{ parte | normalizeString }}.jpg"
+                    alt="Radiador {{parte}} para {{marca}} {{modelo}} {{ano}}" 
+                    onerror="this.onerror=null; this.src='/assets/images/radiadores/default.jpg';" />
+            </div>
         </div>
-        <div class="col__right">
-            <p>Transmisión: {{ transmision }}</p>
-            <p>Clima: {{ clima }}</p>
-            <p>Medidas: {{ alto }} x {{ ancho }}</p>
-            <p>Observaciones: {{ observaciones }}</p>
+    </section>
+    
+    <section id="section__table">
+        <div class="column__2 max1400">
+            <div class="col__left">
+                <ul role="list">
+                    <li>Motor: <strong>{{ motor }}</strong></li>
+                    <li>Transmisión: <strong>{{ transmision }}</strong></li>
+                    <li>Clima: <strong>{{ clima }}</strong></li>
+                </ul>
+            </div>
+            <div class="col__right">
+                <ul role="list">
+                    <li>Ancho: <strong>{{ ancho }}</strong></li>
+                    <li>Alto: <strong>{{ alto }}</strong></li>
+                    <li>Observaciones: <strong>{{ observaciones }}</strong></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section id="section__banners">
+        <div class="column__2 max1400">
+          <div class="col__left">
+            <a href="/nosotros/" id="banner__nosotros" class="banner">
+              <div class="inner__banner__left">
+                <h2>Conoce más de nosotros</h2>
+                <p class="btn">Más información</p>
+              </div>
+              <div class="inner__banner__right">
+                <img src="/assets/images/banner_nosotros.png" />
+              </div>
+              <div class="banner__bg"></div>
+            </a>
+          </div>
+          <div class="col__right">
+            <a href="/contacto/" id="banner__contacto" class="banner">
+              <div class="inner__banner__left">
+                <h2>Resolvemos tus dudas</h2>
+                <p class="btn">Contáctanos</p>
+              </div>
+              <div class="inner__banner__right">
+                <img src="/assets/images/banner_contacto.png" />
+              </div>
+              <div class="banner__bg"></div>
+            </a>
+          </div>
+        </div>
+    </section>
+
+</article>

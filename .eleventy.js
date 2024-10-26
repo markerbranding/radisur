@@ -12,28 +12,10 @@ module.exports = function (eleventyConfig) {
     return JSON.stringify(value); // Usar JSON.stringify directamente
   });
 
-  /*
-  eleventyConfig.addCollection("posts", function(collectionApi) {
-    // Accede a los datos de wordpress.js automáticamente cargados por Eleventy
-    const posts = collectionApi.getAllSorted().filter(item => item.data.wordpress);
-
-    // Devuelve los posts de la API de WordPress
-    return posts;
+  // Quita espacios y diagonales, y deja en minúsculas los links
+  eleventyConfig.addFilter("normalizeString", function(value) {
+    return value.toLowerCase().replace(/\s+/g, '-').replace(/[\/]/g, '-');
   });
-  
-  eleventyConfig.addFilter("fetchPosts", async function(url) {
-    try {
-      let json = await EleventyFetch(url, {
-        duration: "1d", // Cache the response for a day
-        type: "json" // Parse response as JSON
-      });
-      return json;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-      return [];
-    }
-  });
-  */
 
   // Filtro para marcas SVG en hero
   const imageFolderPath = './src/assets/images/marcas/';

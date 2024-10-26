@@ -68,30 +68,83 @@
         <div id="smooth-content">
             <main>
                 
-<section id="section__detalle">
-    <div class="column__2 max1400">
-        <div class="col__left">
-            <h1>Radiador para vehículo marca Chevrolet Express Van (2004)</h1>
-        </div>
-        <div class="col__right">
-            <img src="/assets/images/radiadores/10032.jpg" />
-        </div>
-    </div>
-</section>
+<article class="article__detalle">
 
-<section id="section__table">
-    <div class="column__2 max1400">
-        <div class="col__left">
-            <p>Motor: V8 4.8 6.0</p>  
+    <section id="section__detalle">
+        <div class="column__2 max1400">
+            <div class="col__left">
+                <a href="/" class="back__search">Regresar al buscador</a>
+                <h1>Radiador 10032</h1>
+                <p>El radiador <strong>10032</strong> es compatible con vehículos:</p>
+                <div class="inner__column">
+                    <ul role="list">
+                        <li>Marca <strong>Chevrolet</strong></li>
+                        <li>Modelo: <strong>Express Van</strong></li>
+                        <li>Año: <strong>2004</strong></li>
+                    </ul>
+                    <img class="marca__logo" src="/assets/images/marcas/chevrolet.svg" 
+                        alt="Logo de Chevrolet" />
+                </div>   
+                <a class="btn__w" href="https://wa.me/5219993384647?text=Hola,%20estoy%20interestedo%20en%20el%20radiador%2010032%20para%20Chevrolet%202004%20Express Van%20motor%20V8 4.8 6.0" target="_blank">Preguntar por WhatsApp</a>
+            </div>
+            <div class="col__right">
+                <img src="/assets/images/radiadores/10032.jpg"
+                    alt="Radiador 10032 para Chevrolet Express Van 2004" 
+                    onerror="this.onerror=null; this.src='/assets/images/radiadores/default.jpg';" />
+            </div>
         </div>
-        <div class="col__right">
-            <p>Transmisión: Automática</p>
-            <p>Clima: Con clima</p>
-            <p>Medidas: 34 x 17 1/2</p>
-            <p>Observaciones: Toma inf. seguro</p>
+    </section>
+    
+    <section id="section__table">
+        <div class="column__2 max1400">
+            <div class="col__left">
+                <ul role="list">
+                    <li>Motor: <strong>V8 4.8 6.0</strong></li>
+                    <li>Transmisión: <strong>Automática</strong></li>
+                    <li>Clima: <strong>Con clima</strong></li>
+                </ul>
+            </div>
+            <div class="col__right">
+                <ul role="list">
+                    <li>Ancho: <strong>17 1/2</strong></li>
+                    <li>Alto: <strong>34</strong></li>
+                    <li>Observaciones: <strong>Toma inf. seguro</strong></li>
+                </ul>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <section id="section__banners">
+        <div class="column__2 max1400">
+          <div class="col__left">
+            <a href="/nosotros/" id="banner__nosotros" class="banner">
+              <div class="inner__banner__left">
+                <h2>Conoce más de nosotros</h2>
+                <p class="btn">Más información</p>
+              </div>
+              <div class="inner__banner__right">
+                <img src="/assets/images/banner_nosotros.png" />
+              </div>
+              <div class="banner__bg"></div>
+            </a>
+          </div>
+          <div class="col__right">
+            <a href="/contacto/" id="banner__contacto" class="banner">
+              <div class="inner__banner__left">
+                <h2>Resolvemos tus dudas</h2>
+                <p class="btn">Contáctanos</p>
+              </div>
+              <div class="inner__banner__right">
+                <img src="/assets/images/banner_contacto.png" />
+              </div>
+              <div class="banner__bg"></div>
+            </a>
+          </div>
+        </div>
+    </section>
+
+</article>
+
             </main>
             <footer id="site__footer">
   <div class="column__2 max1400">
@@ -99,7 +152,7 @@
       <ul role="list">
         <li>
           <h2>Oficinas</h2>
-          <p>Calle 45 x 56 y 58 #457 Colonia Santa Gertrudis Copó. C.P. 97305. Mérida, Yucatán.</p>
+          <p>Avenida Cupules 198-A entre calle 16 y 18, Colonia García Ginerés, C.P. 97070. Mérida, Yucatán</p>
         </li>
         <li>
           <a href="#"><span>Aviso de privacidad</span></a>
@@ -135,6 +188,9 @@
 
 <script>
 
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+
+
     //Hamburguesa
     function myToogle() {
         var x = document.getElementById("responsive__menu");
@@ -160,13 +216,7 @@
 
         },
 
-        // all media
-        all: function () {
-
-            // Registro de plugins
-            gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
-
-        },
+        
     });
 
     
