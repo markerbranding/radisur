@@ -43,6 +43,243 @@ layout: 'base.njk'
       <h2>Selecciona las opciones para encontrar el radiador para tu vehículo:</h2>
       <div class="filter__indicator">
         <div id="step-timeline"></div>
+          <ul id="step-indicator" role="list">
+            <li class="step activo"><span>1</span><span></span></li>
+            <li class="step"><span>2</span><span></span></li>
+            <li class="step"><span>3</span><span></span></li>
+            <li class="step"><span>4</span><span></span></li>
+          </ul>
+      </div>
+      <form id="filter-form">
+        <label>Elige la marca:
+            <select id="marca-select" name="marca">
+                <option value="">Selecciona una marca</option>
+            </select>
+        </label>
+    
+        <label>Elige el año:
+            <select id="anio-select" name="anio" disabled>
+                <option value="">Selecciona un año</option>
+            </select>
+        </label>
+    
+        <label>Elige el modelo:
+            <select id="modelo-select" name="modelo" disabled>
+                <option value="">Selecciona un modelo</option>
+            </select>
+        </label>
+    
+        <label>Encuentra tu radiador:
+            <button id="btn-filtrar" type="submit" disabled>Buscar</button>
+        </label>
+      </form>
+    </div>
+  </div>
+  <div class="column__1 max1400">
+    <ul role="list" id="resultados" class="resultados-lista">
+      <span>- Busca el radiador que hace MATCH con tu vehículo -</span>
+    </ul>
+  </div>
+</section>
+
+
+<section id="section__banners">
+  <div class="column__2 max1400">
+    <div class="col__left">
+      <a href="/nosotros/" id="banner__nosotros" class="banner">
+        <div class="inner__banner__left">
+          <h2>Conoce más de nosotros</h2>
+          <p class="btn">Más información</p>
+        </div>
+        <div class="inner__banner__right">
+          <img src="/assets/images/banner_nosotros.png" />
+        </div>
+        <div class="banner__bg"></div>
+      </a>
+    </div>
+    <div class="col__right">
+      <a href="/contacto/" id="banner__contacto" class="banner">
+        <div class="inner__banner__left">
+          <h2>Resolvemos tus dudas</h2>
+          <p class="btn">Contáctanos</p>
+        </div>
+        <div class="inner__banner__right">
+          <img src="/assets/images/banner_contacto.png" />
+        </div>
+        <div class="banner__bg"></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="section__faq">
+  <div class="column__1 max1400">
+    <div class="accordion">
+      <h2>Respuestas a las preguntas más populares</h2>
+      {%- for faq in collections.faq -%}
+        <div class="accordion__item">
+          <div class="accordion__title">
+            <div class="accordion__arrow">
+              <span class="accordion__arrow-item "></span>
+            </div>
+            <span class="accordion__title-text">{{ faq.data.pregunta }}</span>
+          </div>
+          <div class="accordion__content">
+            {{ faq.content | safe }}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+  const radiadoresData = {{ radiadores | json | safe }};
+  const resultadosLista = document.getElementById('resultados');
+
+  const initFilters = (data) => {
+    const marcaSelect = document.getElementById('marca-select');
+    const anioSelect = document.getElementById('anio-select');
+    const modeloSelect = document.getElementById('modelo-select');
+    const btnFiltrar = document.getElementById('btn-filtrar');
+
+    // Deshabilitar selects inicialmente
+    anioSelect.disabled = true;
+    modeloSelect.disabled = true;
+    btnFiltrar.disabled = true;
+
+    // Obtener todas las marcas únicas
+    const marcasDisponibles = [...new Set(data.map(radiador => radiador.marca))];
+    marcasDisponibles.forEach(marca => {
+      marcaSelect.innerHTML += `<option value="${marca}">${marca}</option>`;
+    });
+
+    // Evento para cuando se selecciona una marca
+    marcaSelect.addEventListener('change', function() {
+      const marcaSeleccionada = this.value;
+      const anosDisponibles = [...new Set(data
+        .filter(radiador => radiador.marca === marcaSeleccionada)
+        .map(radiador => radiador.ano))];
+
+      // Poblar el select de años
+      anioSelect.innerHTML = '<option value="">Selecciona un año</option>';
+      anosDisponibles.forEach(ano => {
+        anioSelect.innerHTML += `<option value="${ano}">${ano}</option>`;
+      });
+      anioSelect.disabled = anosDisponibles.length === 0;
+      modeloSelect.disabled = true;
+    });
+
+    // Evento para cuando se selecciona un año
+    anioSelect.addEventListener('change', function() {
+      const marcaSeleccionada = marcaSelect.value;
+      const anioSeleccionado = this.value;
+      const modelosDisponibles = [...new Set(data
+        .filter(radiador => radiador.marca === marcaSeleccionada && radiador.ano === anioSeleccionado)
+        .map(radiador => radiador.modelo))];
+
+      // Poblar el select de modelos
+      modeloSelect.innerHTML = '<option value="">Selecciona un modelo</option>';
+      modelosDisponibles.forEach(modelo => {
+        modeloSelect.innerHTML += `<option value="${modelo}">${modelo}</option>`;
+      });
+      modeloSelect.disabled = modelosDisponibles.length === 0;
+    });
+
+    // Habilitar el botón de búsqueda solo si se seleccionan todos los campos
+    const toggleSubmitButton = () => {
+      btnFiltrar.disabled = !(marcaSelect.value && anioSelect.value && modeloSelect.value);
+    };
+
+    marcaSelect.addEventListener('change', toggleSubmitButton);
+    anioSelect.addEventListener('change', toggleSubmitButton);
+    modeloSelect.addEventListener('change', toggleSubmitButton);
+
+    // Mostrar tarjetas cuando se da clic en "Buscar"
+    btnFiltrar.addEventListener('click', function(event) {
+      event.preventDefault();
+
+      const marcaSeleccionada = marcaSelect.value;
+      const anioSeleccionado = anioSelect.value;
+      const modeloSeleccionado = modeloSelect.value;
+
+      // Filtrar los resultados basados en la selección
+      const resultadosFiltrados = data.filter(radiador => 
+        radiador.marca === marcaSeleccionada &&
+        radiador.ano === anioSeleccionado &&
+        radiador.modelo === modeloSeleccionado
+      );
+
+      // Mostrar los resultados
+      mostrarResultados(resultadosFiltrados);
+    });
+  };
+
+  // Función para mostrar los resultados filtrados como tarjetas
+  const mostrarResultados = (resultados) => {
+    resultadosLista.innerHTML = ''; // Limpiar resultados anteriores
+
+    if (resultados.length > 0) {
+      resultados.forEach(radiador => {
+        const tarjeta = `
+          <li class="resultado-item post">
+            <div class="tarjeta">
+              <div class="post__rad__img">
+                <img src="/assets/images/radiadores/${radiador.parte.toLowerCase()}.jpg" />
+              </div>
+              <div class="post__rad__title">
+                <h2>Radiador ${radiador.parte}<h2>
+              </div>
+
+              <div class="post__rad__brand">
+                <div>
+                  <p>Compatible con: <strong>${radiador.marca}</strong></p>
+                  <p>Año: <strong>${radiador.ano}</strong></p>
+                  <p>Modelo: <strong>${radiador.modelo}</strong></p>
+                </div>
+                <div>
+                  <img src="/assets/images/marcas/${radiador.marca.toLowerCase()}.svg" />
+                </div>
+              </div>
+
+              <div class="post__rad__body">
+                <p>Motor: <strong>${radiador.motor}</strong></p>
+                <p>Transmisión: <strong>${radiador.transmision}</strong></p>
+                <p>Clima: <strong>${radiador.clima}</strong></p>
+                <p>Medidas: <strong>${radiador.ancho}</strong> de ancho x <strong>${radiador.alto}</strong> de alto</p>
+              </div>
+
+
+
+              <div class="post__rad__btn">
+                <a href="/radiadores/${radiador.slug}/">Ver detalle de la pieza</a>
+                <a href="https://wa.me/521{{contacto.whatsapp}}?text=Hola,%20estoy%20interestedo%20en%20el%20radiador%20${radiador.parte}%20para%20${radiador.marca}%20${radiador.ano}%20${radiador.modelo}%20motor%20${radiador.motor}" target="_blank" class="btn__w">Contactar para más información</a>
+              </div>
+
+            </div>
+          </li>
+        `;
+        resultadosLista.innerHTML += tarjeta;
+      });
+    } else {
+      resultadosLista.innerHTML = '<p>No se encontraron radiadores para esta búsqueda.</p>';
+    }
+  };
+
+  initFilters(radiadoresData);
+});
+</script>
+
+<!--
+<section id="section__filtro">
+  <div class="column__1 max1400">
+    <div class="filter__wrapper">
+      <h2>Selecciona las opciones para encontrar el radiador para tu vehículo:</h2>
+      <div class="filter__indicator">
+        <div id="step-timeline"></div>
         <ul id="step-indicator" role="list">
           <li class="step activo"><span>1</span><span></span></li>
           <li class="step"><span>2</span><span></span></li>
@@ -445,4 +682,60 @@ document.getElementById('modelo-select').addEventListener('change', function() {
     console.error('Error fetching data:', error);
   }
 });
+</script>
+
+-->
+
+<script src="../assets/scripts/accordion.js"></script>
+<script>
+
+  gsap.registerPlugin(ScrollTrigger, ScrollSmoother, DrawSVGPlugin, ScrollToPlugin, SplitText);
+  ScrollTrigger.matchMedia({
+    "(min-width: 1025px)": function () {
+
+      // GSAP
+      let heroHeight = gsap.getProperty("#section__hero", "height");
+      let brandsWidth = document.getElementById("listado__marcas").offsetWidth
+      let windowWidth = window.innerWidth;
+      let calWidth = brandsWidth - windowWidth;
+
+      gsap.to(".listado__marcas", {
+        x: `${calWidth*-1}`,
+        scrollTrigger: {
+          trigger: "main",
+          start: "top top",
+          scrub: true,
+          end: `${heroHeight}px 20%`,
+        }
+      });
+      
+    },
+
+    "(max-width: 1024px)": function () {
+
+      let btnfiltrar = document.getElementById("btn-filtrar");
+      btnfiltrar.addEventListener("click", (e) => {
+        gsap.to(window, { duration: 0.5, scrollTo: { y: "#results", offsetY: 120 } });
+      });
+
+    },
+
+    // all media
+    all: function () {
+
+        
+
+    },
+  });
+
+  
+  
+
+  
+
+  let btnhero = document.getElementById("btnHero");
+  btnhero.addEventListener("click", (e) => {
+    gsap.to(window, { duration: 0.5, scrollTo: { y: "#section__filtro", offsetY: 60 } });
+  });
+
 </script>

@@ -1,10 +1,25 @@
-const EleventyFetch = require("@11ty/eleventy-fetch");
 const fs = require('fs');
 const path = require('path');
+const radiadoresData = require("./src/_data/radiadores");
 
 module.exports = function (eleventyConfig) {
 
-  
+  eleventyConfig.addCollection("radiadores", function(collectionApi) {
+    return collectionApi.getFilteredByGlob("./src/radiadores_md/*.md");
+  });
+
+  eleventyConfig.addFilter("json", function(value) {
+    return JSON.stringify(value); // Usar JSON.stringify directamente
+  });
+
+  /*
+  eleventyConfig.addCollection("posts", function(collectionApi) {
+    // Accede a los datos de wordpress.js automáticamente cargados por Eleventy
+    const posts = collectionApi.getAllSorted().filter(item => item.data.wordpress);
+
+    // Devuelve los posts de la API de WordPress
+    return posts;
+  });
   
   eleventyConfig.addFilter("fetchPosts", async function(url) {
     try {
@@ -18,7 +33,7 @@ module.exports = function (eleventyConfig) {
       return [];
     }
   });
-
+  */
 
   // Filtro para marcas SVG en hero
   const imageFolderPath = './src/assets/images/marcas/';

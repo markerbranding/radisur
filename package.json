@@ -17,6 +17,8 @@
   "dependencies": {
     "@11ty/eleventy": "^2.0.1",
     "@11ty/eleventy-fetch": "^4.0.1",
-    "node-fetch": "^3.3.2"
+    "csv-parser": "^3.0.0",
+    "node-fetch": "^3.3.2",
+    "nunjucks": "^3.2.4"
   }
 }

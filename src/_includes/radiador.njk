@@ -1,0 +1,33 @@
+---
+layout: "base.njk"
+permalink: "/radiadores/{{ radiador.slug }}/"
+eleventyComputed:
+  title: "Radiador {{parte}} para {{marca}} {{modelo}} {{ano}}"
+  description: "Te ofrecemos el radiador "
+  keywords: "{{ marca }}, {{modelo}}, {{transmision}}"
+---
+
+<section id="section__detalle">
+    <div class="column__2 max1400">
+        <div class="col__left">
+            <h1>Radiador para vehículo marca {{ marca }} {{ modelo }} ({{ ano }})</h1>
+        </div>
+        <div class="col__right">
+            <img src="/assets/images/radiadores/{{parte.toLowerCase()}}.jpg" />
+        </div>
+    </div>
+</section>
+
+<section id="section__table">
+    <div class="column__2 max1400">
+        <div class="col__left">
+            <p>Motor: {{ motor }}</p>  
+        </div>
+        <div class="col__right">
+            <p>Transmisión: {{ transmision }}</p>
+            <p>Clima: {{ clima }}</p>
+            <p>Medidas: {{ alto }} x {{ ancho }}</p>
+            <p>Observaciones: {{ observaciones }}</p>
+        </div>
+    </div>
+</section>
