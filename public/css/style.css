@@ -1282,16 +1282,6 @@ footer .column__1 a {
                     position: relative;
                     display: block;
                 }
-                /*&::after{
-                    content:"";
-                    width: 8px;
-                    height: 14px;
-                    position: relative;
-                    display: block;
-                    background-color: #002867;
-                    clip-path: polygon(75% 0, 100% 0, 25% 100%, 0% 100%);
-
-                }*/
             }
             h1{
                 font-size: 40px;
@@ -1772,6 +1762,42 @@ footer .column__1 a {
         border-top: 1px solid #d6d9dd;
     }
 
+
+
+
+
+
+
+    .article__detalle{
+        padding-top: 130px;
+        #section__banners{
+            padding-bottom: 10px;
+        }
+    }
+    
+    #section__detalle{
+        padding: 0 5% 70px;
+        .column__2{
+            flex-direction: column;
+            .col__left{
+                width: 100%;
+                padding-right: 0%;
+                padding-bottom: 30px;
+                h1{
+                    font-size: 38px;
+                }
+            }
+            .col__right{
+                width: 100%;
+            }
+        }
+    }
+    
+    #section__table{
+        background-color: #f5f6f7;
+        padding: 70px 5%;
+    }
+
 }
 
 
@@ -1889,6 +1915,67 @@ footer .column__1 a {
     .data__contacto:last-child{
         border-bottom: 0px;
         border-right: 0px;
+    }
+
+    .article__detalle{
+        padding-top: 120px;
+        #section__banners{
+            padding-bottom: 10px;
+        }
+    }
+    
+    #section__detalle{
+        padding: 0 5% 30px;
+        .column__2{
+            .col__left{
+                
+                .back__search{
+                    font-size: 16px;
+                    &::before{
+                        width: 14px;
+                        height: 14px;
+                    }
+                }
+                h1{
+                    font-size: 30px;
+                }
+                .inner__column{
+                    flex-direction: column;
+                    align-items: stretch;
+                    justify-content: stretch;
+                    margin-top: 0px;
+                    padding: 15px;
+                    ul{
+                        width: 100%;
+                        padding-right: 0px;
+                    }
+                    img{
+                        margin-top: 30px;
+                        width: 100%;
+                    }
+                }
+            }
+            .col__right{
+                img{
+                    max-height: 330px;
+                }
+            }
+        }
+    }
+    
+    #section__table{
+        padding: 20px 5%;
+        .column__2{
+            flex-direction: column;
+            .col__left{
+                width: 100%;
+                padding-right: 0px;
+            }
+            .col__right{
+                width: 100%;
+                padding-left: 0px;
+            }
+        }
     }
 
 }
