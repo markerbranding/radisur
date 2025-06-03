@@ -191,7 +191,7 @@
         </label>
     
         <label>Encuentra tu radiador:
-            <button id="btn-filtrar" type="button" disabled>Buscar</button>
+            <button id="btn-filtrar" type="reset" disabled>Buscar</button>
         </label>
       </form>
     </div>
@@ -502,7 +502,7 @@
 
       let btnfiltrar = document.getElementById("btn-filtrar");
       btnfiltrar.addEventListener("click", (e) => {
-        gsap.to(window, { duration: 0.5, scrollTo: { y: "#results", offsetY: 120 } });
+        gsap.to(window, { duration: 0.5, scrollTo: { y: "#resultados", offsetY: 120 } });
       });
 
     },
